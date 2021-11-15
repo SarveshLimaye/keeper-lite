@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "./Header";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
-import {ThemeProvider} from '@material-ui/core/styles';
+
 
 
 const getLocalStorage = () => {
