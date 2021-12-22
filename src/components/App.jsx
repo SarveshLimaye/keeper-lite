@@ -5,25 +5,16 @@ import CreateArea from "./CreateArea";
 
 
 
-const getLocalStorage = () => {
-  let note = localStorage.getItem('note');
-  if (note) {
-    return (note = JSON.parse(localStorage.getItem('note')));
-  } else {
-    return [];
-  }
-}
 
 
 
 
 function App() {
-  const [notes,setNotes]=useState(getLocalStorage())
+  const [notes,setNotes]=useState([])
   function addNote(newNote){
-    setNotes(prevNote => {
-    return [...prevNote,newNote]
+     setNotes((prevNote) => {
+      return [...prevNote,newNote]
     })
-  
   }
 
   function deleteNote(id){
@@ -34,7 +25,7 @@ function App() {
   })
   }
 
-  localStorage.setItem("note",JSON.stringify(notes));  
+ 
   
 
   return (
