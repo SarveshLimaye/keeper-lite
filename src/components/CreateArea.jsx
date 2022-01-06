@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import AddIcon from '@material-ui/icons/Add';
 
 
-
 function CreateArea(props) {
   const[note,setNote]=useState({
     title:"",
