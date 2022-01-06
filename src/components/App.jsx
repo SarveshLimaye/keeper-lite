@@ -9,12 +9,12 @@ import {
 } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCmHXHQm2VPwkfEo80P1ZDWAmxT0qB9_8w",
-  authDomain: "note-taker-24f3b.firebaseapp.com",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_authDomain,
   projectId: "note-taker-24f3b",
   storageBucket: "note-taker-24f3b.appspot.com",
-  messagingSenderId: "155974219041",
-  appId: "1:155974219041:web:007c2e078e8a4bde6dfa60"
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId
 };
 
 // Initialize Firebase
