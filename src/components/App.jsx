@@ -2,26 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
-import { initializeApp } from "firebase/app";
-import {
-  getFirestore, collection, 
+import { collection, 
   addDoc,getDocs
 } from 'firebase/firestore'
-
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_authDomain,
-  projectId: "note-taker-24f3b",
-  storageBucket: "note-taker-24f3b.appspot.com",
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId
-};
-
-// Initialize Firebase
-initializeApp(firebaseConfig);
+import { db } from "./firebase-config";
 
 
-const db = getFirestore()
 
 const colRef = collection(db,'note')
 
