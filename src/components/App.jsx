@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore, collection, 
-  addDoc
+  addDoc,getDocs
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -20,14 +20,31 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-//
+
 const db = getFirestore()
 
 const colRef = collection(db,'note')
 
 
+
+
 function App() {
   const [notes,setNotes]=useState([])
+
+  useEffect(()=> {
+   const getNote = async () => {
+      const allNotes = await getDocs(colRef)
+      setNotes(allNotes.docs.map((doc)=>({...doc.data(),id: doc.id})));
+   }
+
+   getNote()
+  },[])
+
+
+
+console.log(notes);
+
+
   function addNote(newNote){
     
      setNotes((prevNote) => {
@@ -45,6 +62,7 @@ function App() {
         return index !==id
     })
   })
+
   }
 
  
@@ -54,8 +72,8 @@ function App() {
     <div >
       <Header />
       <CreateArea onAdd={addNote} />
-      {notes.map((noteItem,index) => {
-        return <Note key={index} id={index}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
+      {notes.map((noteItem) => {
+        return <Note key={noteItem.id} id={noteItem.id}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
       })}
     </div>
   );
