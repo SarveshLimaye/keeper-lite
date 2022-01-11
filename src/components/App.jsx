@@ -3,7 +3,7 @@ import Header from "./Header";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 import { collection, 
-  addDoc,getDocs
+  addDoc,getDocs, doc, deleteDoc
 } from 'firebase/firestore'
 import { db } from "./firebase-config";
 
@@ -24,7 +24,7 @@ function App() {
    }
 
    getNote()
-  },[])
+  },[notes])
 
 
 
@@ -48,6 +48,10 @@ console.log(notes);
         return index !==id
     })
   })
+
+  const noteDoc = doc(db,'note',id)
+
+  deleteDoc(noteDoc)
 
   }
 
