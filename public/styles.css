@@ -113,3 +113,10 @@ form textarea {
   border: none !important;
   font-size:0;
 }
+
+.loader {
+  background: transparent;
+  text-align: center;
+  margin-top: 10rem;
+  
+}

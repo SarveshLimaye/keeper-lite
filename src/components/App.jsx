@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Note from "./Note";
+import Loading from "./Loader";
 import CreateArea from "./CreateArea";
 import { collection, 
   addDoc,getDocs, doc, deleteDoc
@@ -16,19 +17,22 @@ const colRef = collection(db,'note')
 
 function App() {
   const [notes,setNotes]=useState([])
+  const [isLoaading,setisLoading]=useState(true)
 
   useEffect(()=> {
    const getNote = async () => {
       const allNotes = await getDocs(colRef)
       setNotes(allNotes.docs.map((doc)=>({...doc.data(),id: doc.id})));
+      setisLoading(false)
    }
 
    getNote()
+   
   },[notes])
 
 
 
-console.log(notes);
+
 
 
   function addNote(newNote){
@@ -59,13 +63,13 @@ console.log(notes);
   
 
   return (
-    <div >
-      <Header />
-      <CreateArea onAdd={addNote} />
-      {notes.map((noteItem) => {
-        return <Note key={noteItem.id} id={noteItem.id}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
-      })}
-    </div>
+   isLoaading ? (<Loading />) : ( <div >
+    <Header />
+    <CreateArea onAdd={addNote} />
+    {notes.map((noteItem) => {
+      return <Note key={noteItem.id} id={noteItem.id}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
+    })}
+  </div>)
   );
 }
 
