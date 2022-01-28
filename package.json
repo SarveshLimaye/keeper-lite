@@ -11,6 +11,7 @@
     "react": "16.8.6",
     "react-dark-mode-toggle": "^0.2.0",
     "react-dom": "16.8.6",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "3.2.0",
     "use-dark-mode": "^2.3.1"
   },

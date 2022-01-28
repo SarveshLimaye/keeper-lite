@@ -7,6 +7,7 @@ import { collection,
   addDoc,getDocs, doc, deleteDoc
 } from 'firebase/firestore'
 import { db } from "./firebase-config";
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
 
 
@@ -63,13 +64,27 @@ function App() {
   
 
   return (
-   isLoaading ? (<Loading />) : ( <div >
+   isLoaading ? (<Loading />) : ( 
+    <Router>
+    <>
+    <Routes>
+      <Route path="/" element={ <div >
     <Header />
     <CreateArea onAdd={addNote} />
     {notes.map((noteItem) => {
       return <Note key={noteItem.id} id={noteItem.id}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
     })}
-  </div>)
+  </div>} />
+   <Route path="/login" element={<h1>Login</h1>} />
+    </Routes>
+    
+
+  </>
+  
+  
+  </Router>
+ 
+  )
   );
 }
 
