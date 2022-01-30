@@ -25,6 +25,28 @@ function App() {
   const [isLoaading,setisLoading]=useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  let navigate = useNavigate();
+
+  const handleAction = (id) => {
+    
+    const authentication = getAuth();
+
+    if (id === 1) {
+      signInWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          navigate('/notes')
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        })
+    }
+    if (id === 2) {
+      createUserWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          navigate('/notes')
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+      })
+   }
+  }
+  
 
   useEffect(()=> {
    
@@ -35,6 +57,16 @@ function App() {
    }
 
    getNote()
+
+   let authToken = sessionStorage.getItem('Auth Token')
+
+        if (authToken) {
+            navigate('/notes')
+        }
+
+        if (!authToken) {
+            navigate('/login')
+        }
   },[notes])
 
 
@@ -66,26 +98,17 @@ function App() {
 
   }
 
-  const handleAction = (id) => {
-
-    const authentication = getAuth();
-    if (id === 2) {
-      createUserWithEmailAndPassword(authentication, email, password)
-        .then((response) => {
-          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-      })
-   }
-  }
+  
 
  
   
 
   return (
    isLoaading ? (<Loading />) : ( 
-    <Router>
     <>
     <Routes>
-      <Route path="/" element={ <div >
+      <Route path="/" element = {<div><Header/> <CreateArea/></div>} />
+      <Route path="/notes" element={ <div >
     <Header />
     <CreateArea onAdd={addNote} />
     {notes.map((noteItem) => {
@@ -99,8 +122,6 @@ function App() {
 
   </>
   
-  
-  </Router>
  
   )
   );
