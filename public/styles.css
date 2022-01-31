@@ -120,3 +120,20 @@ form textarea {
   margin-top: 10rem;
   
 }
+
+.logout{
+  margin-bottom: 2rem;
+  
+}
+
+
+.logout-btn{
+  float: right;
+  background-color: #f5ba13;
+  color: #fff;
+  border: none;
+  color: #fff;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  font-size: 1.1em;
+}

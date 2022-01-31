@@ -8,7 +8,7 @@ import { collection,
   addDoc,getDocs, doc, deleteDoc
 } from 'firebase/firestore'
 import { db } from "./firebase-config";
-import { BrowserRouter as Router, Routes,Route,useNavigate } from 'react-router-dom'
+import { Routes,Route,useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 
@@ -98,7 +98,10 @@ function App() {
 
   }
 
-  
+  const handleLogout = () => {
+    sessionStorage.removeItem('Auth Token');
+    navigate('/login')
+}
 
  
   
@@ -109,7 +112,7 @@ function App() {
     <Routes>
       <Route path="/" element = {<div><Header/> <CreateArea/></div>} />
       <Route path="/notes" element={ <div >
-    <Header />
+    <Header handleLogout={() => {handleLogout()}} />
     <CreateArea onAdd={addNote} />
     {notes.map((noteItem) => {
       return <Note key={noteItem.id} id={noteItem.id}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
