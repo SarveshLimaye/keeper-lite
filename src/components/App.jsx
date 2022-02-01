@@ -67,7 +67,7 @@ function App() {
         if (!authToken) {
             navigate('/login')
         }
-  },[notes])
+  },[notes,navigate])
 
 
 
