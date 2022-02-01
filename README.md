@@ -1,4 +1,7 @@
 # Quick Notes
+[![Netlify Status](https://api.netlify.com/api/v1/badges/18e512ec-6b85-4717-9cb7-d51139f7cc96/deploy-status)](https://app.netlify.com/sites/quick-notes-react/deploys)
+
+
 ## Description
 Useful and awesome note-taking app built using react js
 
