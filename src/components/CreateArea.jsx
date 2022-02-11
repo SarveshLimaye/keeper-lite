@@ -1,12 +1,17 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import AddIcon from '@material-ui/icons/Add';
+import {useNavigate } from 'react-router-dom'
 
 
 function CreateArea(props) {
+  
   const[note,setNote]=useState({
     title:"",
     content:"",
   })
+  let navigate = useNavigate();
+
+  
 
   const[isexpand,setisExpand]=useState(false)
 
@@ -35,7 +40,16 @@ function CreateArea(props) {
 
   
     
+useEffect (() => {
+  let authToken = sessionStorage.getItem('Auth Token')
+  if (authToken) {
+    navigate('/notes')
+}
 
+if (!authToken) {
+    navigate('/login')
+}
+},[])
   
 
   

@@ -49,6 +49,11 @@ function App() {
   
 
   useEffect(()=> {
+    let authToken = sessionStorage.getItem('Auth Token')
+
+    if (authToken) {
+      navigate('/notes')
+    }
    
    const getNote = async () => {
       const allNotes = await getDocs(colRef)
@@ -58,16 +63,7 @@ function App() {
 
    getNote()
 
-   let authToken = sessionStorage.getItem('Auth Token')
-
-        if (authToken) {
-            navigate('/notes')
-        }
-
-        if (!authToken) {
-            navigate('/login')
-        }
-  },[notes,navigate])
+  },[notes])
 
 
 
@@ -118,8 +114,8 @@ function App() {
       return <Note key={noteItem.id} id={noteItem.id}  title={noteItem.title} content={noteItem.content} onDelete={deleteNote} />
     })}
   </div>} />
-   <Route path="/login" element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
-   <Route path="/register" element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)}/>} />
+   <Route path="/login" loginform= {true} element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
+   <Route path="/register" loginform={false} element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)}/>} />
     </Routes>
     
 
