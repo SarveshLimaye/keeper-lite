@@ -63,7 +63,7 @@ function App() {
 
    getNote()
 
-  },[notes])
+  },[notes,navigate])
 
 
 

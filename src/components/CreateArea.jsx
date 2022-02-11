@@ -49,7 +49,7 @@ useEffect (() => {
 if (!authToken) {
     navigate('/login')
 }
-},[])
+},[navigate])
   
 
   
