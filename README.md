@@ -28,4 +28,4 @@ Useful and awesome note-taking app built using react js
 5. npm start
 ``` 
 
-## Deployed <a href="https://quick-notes-react.netlify.app">Here </a>
+
