@@ -156,12 +156,29 @@ form textarea {
 }
 
 .card button {
-  padding: 0.4rem;
+  padding: 0.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   margin-top: 1.2rem;
-  border-radius: 20%;
+  border-radius: 10%;
   box-shadow: none;
   border: none;
   background-color: #eeee;
+}
+
+.card button:hover {
+  background-color: ghostwhite;
+  color: violet;
+  border: outlined;
+}
+
+a {
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+a:hover {
+  color: gold;
 }
 
 .register {
