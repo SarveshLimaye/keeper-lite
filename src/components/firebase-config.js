@@ -7,8 +7,8 @@ const firebaseConfig = {
     authDomain: process.env.REACT_APP_authDomain,
     projectId: "note-taker-24f3b",
     storageBucket: "note-taker-24f3b.appspot.com",
-    messagingSenderId: process.env.REACT_APP_messagingSenderId,
-    appId: process.env.REACT_APP_appId
+    messagingSenderId: "note-taker-24f3b.firebaseapp.com",
+    appId:"1:155974219041:web:007c2e078e8a4bde6dfa60"
   };
   
   // Initialize Firebase
