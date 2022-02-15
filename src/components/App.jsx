@@ -10,6 +10,8 @@ import { collection,
 import { db } from "./firebase-config";
 import { Routes,Route,useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -36,14 +38,27 @@ function App() {
         .then((response) => {
           navigate('/notes')
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-        })
+        }).catch((error) => {
+          console.log(error)
+          if(error.code === 'auth/wrong-password'){
+            toast.error('Please check the Password');
+          }
+          if(error.code === 'auth/invalid-email'){
+            toast.error('Please check the Email');
+          }
+          
+ })
     }
     if (id === 2) {
       createUserWithEmailAndPassword(authentication, email, password)
         .then((response) => {
           navigate('/notes')
           sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
-      })
+      }).catch((error) => {
+        if(error.code === 'auth/email-already-in-use'){
+          toast.error('Email already in use');
+        }
+})
    }
   }
   
@@ -105,6 +120,7 @@ function App() {
   return (
    isLoaading ? (<Loading />) : ( 
     <>
+    <ToastContainer  />
     <Routes>
       <Route path="/" element = {<div><Header/> <CreateArea/></div>} />
       <Route path="/notes" element={ <div >
