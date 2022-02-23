@@ -184,3 +184,7 @@ a:hover {
 .register {
   margin-top: 2rem;
 }
+
+.heading h1 {
+  font-family: "Lato", sans-serif;
+}
